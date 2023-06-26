@@ -1,0 +1,3 @@
+[submodule "components/iis3dwb-pid"]
+	path = components/iis3dwb-pid
+	url = https://github.com/STMicroelectronics/iis3dwb-pid.git
