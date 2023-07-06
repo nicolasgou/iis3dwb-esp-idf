@@ -159,9 +159,6 @@
 
   #include "esp32_bus.h"
 
-  #include "RGBLED_00.h"
-  #include "led_strip.h"
-
 #endif
 
 /* Private macro -------------------------------------------------------------*/
@@ -624,14 +621,14 @@ static void platform_init(void)
 
   #elif defined(ESP32)
   // ESP32 platform BUS specific initialization
-  esp32_spi_init = spi_bus_init (SPI_BUS, SPI_SCK_GPIO, SPI_MISO_GPIO, SPI_MOSI_GPIO);
+  esp32_spi_init = esp32_spi_bus_init (SPI_BUS, SPI_SCK_GPIO, SPI_MISO_GPIO, SPI_MOSI_GPIO);
   platform_delay(100);
   if (esp32_spi_init)
   {
     debug ("ESP32 SPI Interface Initialized!", __FUNCTION__);
 
 
-    if (!spi_device_init (SPI_BUS, SPI_CS_GPIO)) {
+    if (!esp32_spi_device_init (SPI_BUS, SPI_CS_GPIO)) {
       error ("Could not initialize the sensor connnected to ESP32 SPI Interface.", __FUNCTION__);
     } else {
       debug ("Sensor connnected to ESP32 SPI Interface Initialized!", __FUNCTION__);
